@@ -154,6 +154,16 @@ connection.connect(function(err) {
     firstPrompt()
 });
 
+console.table([
+  {
+    name: 'foo',
+    age: 10
+  }, {
+    name: 'bar',
+    age: 20
+  }
+]);
+
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
