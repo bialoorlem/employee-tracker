@@ -159,9 +159,10 @@ function updateEmployee() {
     ])
     .then(function(answer) {
       // let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
-      let query = `'UPDATE employee SET role_id="updateRole" WHERE ${answer.eeUpdate}`;
+      //let query = `'UPDATE employee SET role_id=${answer.updateRole} WHERE first_name= ${answer.eeUpdate}`;
+      //console.log(query);
 
-      connection.query(query, function(err, res) {
+      connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
