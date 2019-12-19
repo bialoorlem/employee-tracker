@@ -134,31 +134,31 @@
 // - - -
 // © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
 
-const inquirer = require("inquirer");
-const mysql = require("mysql");
-const cTable = require("console.table");
-const app = mysql();
+// const inquirer = require("inquirer");
+// const mysql = require("mysql");
+// const cTable = require("console.table");
+// const app = mysql();
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    // Your port; if not 3306
-    port: 8080,
-    // Your username
-    user: "root",
-    // Your password
-    password: "root",
-    database: "ee_info_db"
-});
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("connected as id " + connection.threadId);
-    console.log('\n')
-    firstPrompt()
-});
+// const connection = mysql.createConnection({
+//     host: "localhost",
+//     // Your port; if not 3306
+//     port: 8080,
+//     // Your username
+//     user: "root",
+//     // Your password
+//     password: "root",
+//     database: "ee_info_db"
+// });
+// connection.connect(function(err) {
+//     if (err) throw err;
+//     console.log("connected as id " + connection.threadId);
+//     console.log('\n')
+//     firstPrompt()
+// });
 
 
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
+// // Starts the server to begin listening
+// // =============================================================
+// app.listen(PORT, function() {
+//   console.log("App listening on PORT " + PORT);
+// });
