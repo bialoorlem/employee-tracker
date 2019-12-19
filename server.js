@@ -58,7 +58,7 @@ function startScreen() {
                     viewEmployees();
                     break;
                 case "Update employee role":
-                    viewDepartment();
+                    updateEmployee();
                     break;
                 default:
                     quit()
@@ -143,17 +143,31 @@ function addEmployee() {
 
 }
 
-function addDepartment() {
+function updateEmployee() {
     
 
-    inquirer.prompt({
+    inquirer.prompt(
+        [
+        {
+      
+        type: "list",
+        message: "Which employee would you like to update?",
+        choices: ["John", "Jill", "Jack", "Steve"],
+        name: "eeUpdate"
+      
+    },
+
+            {
       
         type: "input",
-        message: "What is the name of the department?",
-        name: "deptName"
+        message: "What do you want to update to?",
+        name: "updateRole"
       
-    }).then(function(answer){
-        let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
+    }
+        ]
+    ).then(function(answer){
+        // let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
+        let query = `'UPDATE employee SET role_id="updateRole" WHERE ${answer.eeUpdate}`
         
         connection.query(query, function(err, res) {
             if (err) throw err;
