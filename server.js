@@ -1,7 +1,8 @@
-// installed everything needed 12/18/2019 @ 9:55 CST am
-const inquirer = require("inquirer")
-const mysql = require("mysql")
-const cTable = require("console.table")
+//Dependencies found here
+const inquirer = require("inquirer");
+const mysql = require("mysql");
+const cTable = require("console.table");
+const db = require(".");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -91,6 +92,20 @@ function addDepartment() {
     })
 
 }
+
+//Function from class
+
+// async function test(){
+
+// const answers = await inquirer.prompt({
+
+//     type:"input",
+//     message: "yo",
+//     name: "testThis"
+// })
+// }
+
+
 
 //Pulled from W3 Schools
 
