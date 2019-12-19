@@ -71,7 +71,7 @@ function startScreen() {
 
 function addDepartment() {
     
-    let query = "SELECT * FROM ee_info_db WHERE deptName=?"
+    let query = "INSERT INTO department (name) VALUES (deptName)"
 
     inquirer.prompt({
       
@@ -89,6 +89,21 @@ function addDepartment() {
     })
 
 }
+
+//Pulled from W3 Schools
+
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+//   //Insert a record in the "customers" table:
+//   var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     console.log("1 record inserted");
+//   });
+// });
+
+//Referred to Derek Teed's Repo
 
 // function purchase(stockQuantity, id, quantity, price) {
 //     newQuantity = parseInt(stockQuantity) - parseInt(quantity);
