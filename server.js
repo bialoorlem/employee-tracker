@@ -71,7 +71,6 @@ function startScreen() {
 
 function addDepartment() {
     
-    let query = "INSERT INTO department (name) VALUES (deptName)"
 
     inquirer.prompt({
       
@@ -79,11 +78,14 @@ function addDepartment() {
         message: "What is the name of the department?",
         name: "deptName"
       
+    }).then(function(answer){
+        let query = `INSERT INTO department (name) VALUES (${answer.deptName})`
+        
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res)
+            startScreen()
     })
-    connection.query(query, function(err, res) {
-        if (err) throw err;
-        console.table(res)
-        startScreen()
 
 
     })
