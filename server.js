@@ -43,7 +43,7 @@ function startScreen() {
                     addDepartment();
                     break;
                 case "Add role":
-                    viewDepartment();
+                    addRole();
                     break;
                 case "Add employee":
                     viewDepartment();
@@ -70,6 +70,63 @@ function startScreen() {
 
 }
 
+function addRole() {
+    
+
+    inquirer.prompt(
+        [{
+        type: "input",
+        message: "What's the name of the role?",
+        name: "roleName"
+    },
+    {
+        type: "input",
+        message: "What is the salary for this role?",
+        name: "salaryTotal"
+    },
+    {
+        type: "input",
+        message: "What is the department id number?",
+        name: "deptID"
+    }
+    ]
+    ).then(function(answer){
+        let query = `INSERT INTO role (title, salary, department_id) VALUES ("${answer.roleName}", "${answer.salaryTotal}", ${answer.deptID})`
+        
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res)
+            startScreen()
+    })
+
+
+    })
+
+}
+
+function addEmployee() {
+    
+
+    inquirer.prompt({
+      
+        type: "input",
+        message: "What is the name of the department?",
+        name: "deptName"
+      
+    }).then(function(answer){
+        let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
+        
+        connection.query(query, function(err, res) {
+            if (err) throw err;
+            console.table(res)
+            startScreen()
+    })
+
+
+    })
+
+}
+
 function addDepartment() {
     
 
@@ -80,7 +137,7 @@ function addDepartment() {
         name: "deptName"
       
     }).then(function(answer){
-        let query = `INSERT INTO department (name) VALUES (${answer.deptName})`
+        let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
         
         connection.query(query, function(err, res) {
             if (err) throw err;
