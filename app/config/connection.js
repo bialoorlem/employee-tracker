@@ -137,6 +137,8 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
+const app = mysql();
+
 const connection = mysql.createConnection({
     host: "localhost",
     // Your port; if not 3306
@@ -154,15 +156,6 @@ connection.connect(function(err) {
     firstPrompt()
 });
 
-console.table([
-  {
-    name: 'foo',
-    age: 10
-  }, {
-    name: 'bar',
-    age: 20
-  }
-]);
 
 // Starts the server to begin listening
 // =============================================================
