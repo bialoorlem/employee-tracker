@@ -76,6 +76,31 @@ function startScreen() {
     });
 }
 
+
+
+
+function addDepartment() {
+
+
+    inquirer.prompt({
+      
+        type: "input",
+        message: "What is the name of the department?",
+        name: "deptName"
+
+    }).then(function(answer){
+
+
+
+        connection.query("INSERT INTO department (name) VALUES (?)", [answer.deptName] , function(err, res) {
+            if (err) throw err;
+            console.table(res)
+            startScreen()
+    })
+    })
+}
+
+
 function addRole() {
   inquirer
     .prompt([
@@ -96,9 +121,9 @@ function addRole() {
       }
     ])
     .then(function(answer) {
-      let query = `INSERT INTO role (title, salary, department_id) VALUES ("${answer.roleName}", "${answer.salaryTotal}", ${answer.deptID})`;
 
-      connection.query(query, function(err, res) {
+
+      connection.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answer.roleName, answer.salaryTotal, answer.deptID], function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -131,9 +156,9 @@ function addEmployee() {
       }
     ])
     .then(function(answer) {
-      let query = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ("${answer.eeFirstName}", "${answer.eeLastName}", ${answer.roleID},${answer.managerID})`;
 
-      connection.query(query, function(err, res) {
+      
+      connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.eeFirstName, answer.eeLastName, answer.roleID, answer.managerID], function(err, res) {
         if (err) throw err;
         console.table(res);
         startScreen();
@@ -141,13 +166,27 @@ function addEmployee() {
     });
 }
 
+//Since we're using inquirer, we can pass the query into the method as an array
+
 function updateEmployee() {
+    let total;
+  let query = "SELECT * FROM employee";
+
+
+  
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    total = res;
+    console.log(total);
+  });
+
+
   inquirer
     .prompt([
       {
         type: "list",
         message: "Which employee would you like to update?",
-        choices: ["John", "Jill", "Jack", "Steve"],
+        choices: [total],
         name: "eeUpdate"
       },
 
@@ -158,9 +197,6 @@ function updateEmployee() {
       }
     ])
     .then(function(answer) {
-      // let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
-      //let query = `'UPDATE employee SET role_id=${answer.updateRole} WHERE first_name= ${answer.eeUpdate}`;
-      //console.log(query);
 
       connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
         if (err) throw err;
