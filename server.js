@@ -26,8 +26,7 @@ connection.connect(function(err) {
   //  connection.end();//
 });
 
-/*
-*/
+//What the user will first see once logged into node
 function startScreen() {
   inquirer
     .prompt({
@@ -77,7 +76,7 @@ function startScreen() {
 }
 
 
-
+//All of the corresponding functions found below
 
 function addDepartment() {
 
