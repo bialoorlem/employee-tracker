@@ -169,28 +169,11 @@ function addEmployee() {
 //Since we're using inquirer, we can pass the query into the method as an array
 
 function updateEmployee() {
-    let total = "";
-  let query = "SELECT * FROM employee";
-
-array = [ 1, 2, 3, 4, 5, 6 ]; 
-for (index = 0; index < array.length; index++) { 
-    console.log(array[index]); 
-} 
-
-  
-  connection.query(query, function(err, res) {
-    if (err) throw err;
-    total = res;
-    console.log(total);
-  });
-
-
   inquirer
     .prompt([
       {
-        type: "list",
+        type: "input",
         message: "Which employee would you like to update?",
-        choices: [total],
         name: "eeUpdate"
       },
 
@@ -201,6 +184,9 @@ for (index = 0; index < array.length; index++) {
       }
     ])
     .then(function(answer) {
+      // let query = `INSERT INTO department (name) VALUES ("${answer.deptName}")`
+      //let query = `'UPDATE employee SET role_id=${answer.updateRole} WHERE first_name= ${answer.eeUpdate}`;
+      //console.log(query);
 
       connection.query('UPDATE employee SET role_id=? WHERE first_name= ?',[answer.updateRole, answer.eeUpdate],function(err, res) {
         if (err) throw err;
