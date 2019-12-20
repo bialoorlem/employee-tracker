@@ -9,5 +9,5 @@ I utilized mySQL for this particular homework to manage the database and the inf
 
 Everything is done on the back-end for now in the terminal, but I plan on making a front-end appearance for this app so that employers can utilize it.
 
-Gif demonstrating abilities can be found here: https://media.giphy.com/media/gg8x8hEERqFq6Fov6g/giphy.gif
+Video demonstrating abilities can be found here: https://youtu.be/HeCUaI2dqTg
 
